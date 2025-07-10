@@ -1,17 +1,40 @@
-function add(num1,num2){
+function add(){
     return num1+num2;
 }
 
-function subtract(num1,num2){
+function subtract(){
     return num1-num2;
 }
 
-function multiply(num1,num2){
+function multiply(){
     return num1*num2;
 }
 
-function divide(num1,num2){
+function divide(){
     return num1/num2;
+}
+
+// To display the numbers
+function display(number){
+    const dis = document.querySelector('.display');
+    dis.textContent = number;
+}
+
+function operate(operator){
+    if (operator == '+'){
+        num1 = add();
+    }
+    if (operator == '-'){
+        num1 = subtract();
+    }
+    if (operator == 'X'){
+        num1 = multiply();
+    }
+    if (operator == '/'){
+        num1 = divide();
+    }
+    display(num1);
+    num2 = null;
 }
 
 let number = '';
@@ -24,6 +47,8 @@ const numberButtons = document.querySelectorAll('.number');
 numberButtons.forEach((button) => {
     button.addEventListener('click', () =>{
         number += button.textContent;
+        // Display every number pressed
+        display(parseInt(number));
     });
 });
 
@@ -31,23 +56,18 @@ numberButtons.forEach((button) => {
 const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () =>{
-        if (button.textContent == '+'){
-            operator = '+';
-        } else if (button.textContent == '-'){
-            operator = '-';
-        } else if (button.textContent == 'X'){
-            operator = 'X';
-        } else if (button.textContent == '/'){
-            operator = '/';
-        } 
-        if (num1){
+        if (num1 !== null){
             num2 = parseInt(number);
+            if (operator != ''){
+                operate(operator);
+            }
             number = '';
         }else{
             num1 = parseInt(number);
             number = '';
         }
-        console.log(num1, num2);
+        
+        operator = button.textContent;
     });
 });
 
@@ -58,24 +78,5 @@ equals.addEventListener('click', () =>{
         num2 = parseInt(number);
         number = '';
     }
-    if (operator == '+'){
-        num1 = add(num1,num2);
-        num2 = null;
-        console.log(num1);
-    }
-    if (operator == '-'){
-        num1 = subtract(num1,num2);
-        num2 = null;
-        console.log(num1);
-    }
-    if (operator == 'X'){
-        num1 = multiply(num1,num2);
-        num2 = null;
-        console.log(num1);
-    }
-    if (operator == '/'){
-        num1 = divide(num1,num2);
-        num2 = null;
-        console.log(num1);
-    }
+    operate(operator);
 });
