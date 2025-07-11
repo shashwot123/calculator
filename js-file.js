@@ -1,18 +1,18 @@
 // Arithmetic functions
 function add(){
-    return num1+num2;
+    return Math.round((num1+num2)*100)/100;
 }
 
 function subtract(){
-    return num1-num2;
+    return Math.round((num1-num2)*100)/100;
 }
 
 function multiply(){
-    return num1*num2;
+    return Math.round((num1*num2)*100)/100;
 }
 
 function divide(){
-    return num1/num2;
+    return Math.round((num1/num2)*100)/100;
 }
 
 // To display the numbers
@@ -50,7 +50,7 @@ numberButtons.forEach((button) => {
     button.addEventListener('click', () =>{
         number += button.textContent;
         // Display every number pressed
-        display(parseInt(number));
+        display(number);
     });
 });
 
@@ -62,7 +62,7 @@ operatorButtons.forEach((button) => {
         if (number !== ''){
             // If num1 exists, assign the number provided by the user to num2
             if (num1 !== null){
-                num2 = parseInt(number);
+                num2 = parseFloat(number);
                 // The previous operation is done if it exists
                 if (operator !== ''){
                     operate(operator);
@@ -71,7 +71,7 @@ operatorButtons.forEach((button) => {
                 number = '';
             }else{
                 // If num1 doesnot exist, assign the number to num1
-                num1 = parseInt(number);
+                num1 = parseFloat(number);
                 // Clear input
                 number = '';
             }
@@ -86,7 +86,7 @@ const equals = document.querySelector('.equals');
 equals.addEventListener('click', () =>{
     // If the user has entered a number, store it in num2
     if (number !== ''){
-        num2 = parseInt(number);
+        num2 = parseFloat(number);
     }
     // If there is an operator and a second number, do the operation
     if (operator && num2 !== null){
@@ -96,3 +96,12 @@ equals.addEventListener('click', () =>{
         operator = '';
     }  
 });
+
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', () =>{
+    number = '';
+    num1 = null;
+    num2 = null;
+    operator = '';
+    display(0);
+})

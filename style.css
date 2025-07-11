@@ -10,12 +10,23 @@
     justify-content: center;
     margin: 40px;
     gap: 8px;
+    padding: 20px 248px;
+}
+
+.display {
+    background-color: tan;
+    text-align: center;
+    margin-bottom: 8px;
+    border-radius: 8px;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-color: mediumaquamarine;
+    padding: 8px;
+    border-radius: 24px;
 }
 
 .row {
@@ -24,4 +35,11 @@
     margin: 4px;
     gap: 4px;
 }
+
+button {
+    background-color: bisque;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
 
